@@ -45,3 +45,5 @@ next-env.d.ts
 
 # Superpowers brainstorm scratch dir (visual companion mockups, session state)
 .superpowers/
+
+/src/generated/prisma

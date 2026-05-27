@@ -1,0 +1,90 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id              String   @id @default(cuid())
+  key             String   @unique
+  title           String
+  blurb           String
+  anchor          String
+  emailRecipient  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  products        Product[]
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  description   String
+  imageUrl      String
+  termLabel     String
+  highlights    String[]
+  hasSimulator  Boolean  @default(false)
+  category      Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId    String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model LoanConfig {
+  id                  String   @id @default(cuid())
+  valuationFee        Int      @default(1500)
+  legalFee            Int      @default(1500)
+  processingFee       Int      @default(15000)
+  logbookTransferFee  Int      @default(2500)
+  trackerFee          Int      @default(25000)
+  monthlyRate         Float    @default(0.06)
+  minMonths           Int      @default(1)
+  maxMonths           Int      @default(6)
+  updatedAt           DateTime @updatedAt
+  updatedBy           String   @default("system")
+}
+
+model Lead {
+  id              String   @id @default(cuid())
+  name            String
+  email           String
+  phone           String
+  category        String
+  subject         String?
+  message         String?
+  fundingCategory String?
+  opportunityType String?
+  track           String?
+  ticket          String?
+  description     String?
+  notes           String?
+  status          String   @default("new")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model EmailConfig {
+  id                String @id @default(cuid())
+  categoryLoans     String @default("loans@abzcapital.co.ke")
+  categoryInsurance String @default("cover@abzcapital.co.ke")
+  categoryInvest    String @default("invest@abzcapital.co.ke")
+  categoryGeneral   String @default("hello@abzcapital.co.ke")
+  updatedAt         DateTime @updatedAt
+}

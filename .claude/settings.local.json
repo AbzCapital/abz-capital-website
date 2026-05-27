@@ -14,7 +14,9 @@
       "Bash(git commit -m ' *)",
       "Bash(npm run *)",
       "Bash(npm install *)",
-      "Bash(git commit -m 'Fix build and linting issues *)"
+      "Bash(git commit -m 'Fix build and linting issues *)",
+      "Bash(npx prisma *)",
+      "Bash(git commit -m 'Phase 2: Database & Admin Dashboard MVP *)"
     ]
   }
 }
