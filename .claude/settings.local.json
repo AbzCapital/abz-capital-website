@@ -11,7 +11,10 @@
       "Bash(git init *)",
       "Bash(git config *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(git commit -m 'Fix build and linting issues *)"
     ]
   }
 }

@@ -30,7 +30,7 @@ export const investorSchema = z.object({
   ticket: z.enum(["<500K", "500K-2M", "2M-10M", ">10M"], {
     message: "Choose a ticket size band",
   }),
-  notes: z.string().trim().max(4000).optional().default(""),
+  notes: z.string().trim().max(4000).optional(),
 });
 export type InvestorInput = z.infer<typeof investorSchema>;
 

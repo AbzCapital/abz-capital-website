@@ -1,6 +1,6 @@
 "use client";
 
-import { LoanSchedule, formatKES, formatKESCompact } from "@/lib/loan-calc";
+import { LoanSchedule, formatKESCompact } from "@/lib/loan-calc";
 
 export interface AmortizationTableProps {
   schedule: LoanSchedule | null;
